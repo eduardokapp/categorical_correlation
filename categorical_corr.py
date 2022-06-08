@@ -15,7 +15,7 @@ def get_categorical_corr(
     features: List[str] = None,
     method: str = 'cramer',
     thr: float = 0.5
-) -> Tuple(pd.DataFrame, dict):
+) -> Tuple[pd.DataFrame, dict]:
     """
     Given a dataframe and a list of categorical features, returns a correlation
     matrix, with correlation values for every feature pair. Along with the
@@ -57,9 +57,9 @@ def get_categorical_corr(
         raise TypeError("'thr' should be a float value.")
 
     if method != 'theil':
-        output = get_symmetrical_metric(data[features], output, method)
+        output = get_symmetrical_metric(data[features], method)
     else:
-        output = get_assymetrical_metric(data[features], output, method)
+        output = get_assymetrical_metric(data[features], method)
 
     # finding features that have any metric greater than 'thr'
     high_corr = [
@@ -75,7 +75,7 @@ def get_categorical_corr(
     return output, corr_features
 
 
-def get_symmetrical_metric(data, method):
+def get_symmetrical_metric(data: pd.DataFrame, method: str) -> pd.DataFrame:
     """
     Given a dataframe and a list of categorical features, returns a correlation
     matrix, with correlation values for every feature pair.
@@ -120,7 +120,7 @@ def get_symmetrical_metric(data, method):
     return output
 
 
-def get_asymmetrical_metric(data, method):
+def get_asymmetrical_metric(data: pd.DataFrame, method: str) -> pd.DataFrame:
     """
     Given a dataframe and a list of categorical features, returns a correlation
     matrix, with correlation values for every feature pair.
