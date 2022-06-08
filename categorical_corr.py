@@ -1,6 +1,6 @@
 '''A wrapper for some useful categorical correlation/association metrics.'''
 
-from itertools import combinations
+from itertools import combinations, permutations
 from collections import Counter
 from typing import List, Tuple
 
@@ -59,7 +59,7 @@ def get_categorical_corr(
     if method != 'theil':
         output = get_symmetrical_metric(data[features], method)
     else:
-        output = get_assymetrical_metric(data[features], method)
+        output = get_asymmetrical_metric(data[features], method)
 
     # finding features that have any metric greater than 'thr'
     high_corr = [
