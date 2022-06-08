@@ -115,7 +115,7 @@ def get_symmetrical_metric(data: pd.DataFrame, method: str) -> pd.DataFrame:
         input_tab = pd.crosstab(data[feat_a], data[feat_b])
         res = association(input_tab, method=method, correction=True)
 
-        output[feat_a][feat_b], output[feat_a][feat_b] = res, res
+        output[feat_a][feat_b], output[feat_b][feat_a] = res, res
 
     return output
 
