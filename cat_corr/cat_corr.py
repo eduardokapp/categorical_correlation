@@ -1,7 +1,6 @@
 '''A wrapper for some useful categorical correlation/association metrics.'''
 
 from itertools import combinations, permutations
-from collections import Counter
 from typing import List, Tuple
 
 import pandas as pd
@@ -20,7 +19,8 @@ def get_categorical_corr(
     Given a dataframe and a list of categorical features, returns a correlation
     matrix, with correlation values for every feature pair. Along with the
     correlation matrix, a dictionary linking each feature that has a
-    correlation with any other feature higher than `thr` value is also returned.
+    correlation with any other feature higher
+    than `thr` value is also returned.
 
     Parameters
     ----------
@@ -40,7 +40,7 @@ def get_categorical_corr(
 
     Returns
     -------
-        The correlation matrix itself and the correlated features dictionary, 
+        The correlation matrix itself and the correlated features dictionary,
         as a tuple.
     """
     if not isinstance(data, pd.DataFrame):
@@ -65,7 +65,7 @@ def get_categorical_corr(
     high_corr = [
         x for x in features if any(np.greater(output[x].drop(x, axis=0), thr))
     ]
-    corr_features  = {}
+    corr_features = {}
     features = np.array(features)
     for var in high_corr:
         cond = np.greater(output[f'{var}'], thr)
