@@ -46,7 +46,7 @@ def get_categorical_corr(
     if not isinstance(data, pd.DataFrame):
         raise TypeError("'data' should be a pd.DataFrame.")
     if features is None:
-        features = data.columns
+        features = list(data.columns)
     if not isinstance(features, list):
         raise TypeError("'features' should be a list with feature names.")
     if any(not isinstance(feature, str) for feature in features):
